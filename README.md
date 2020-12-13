@@ -1,6 +1,9 @@
 # Getting Started with Electron and Create React App
 
+**After cloning the repo, `cd` in to the project directory and run `git submodule init` and `git submodule update` to clone the `react-app' submodule.**
+
 This project was bootstrapped with [Electron](https://github.com/electron) and [Create React App](https://github.com/facebook/create-react-app).
+
 
 ## Available Scripts
 
