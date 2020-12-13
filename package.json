@@ -1,0 +1,81 @@
+{
+  "name": "electron-with-react",
+  "productName": "ElectronWithReact",
+  "version": "1.0.0",
+  "description": "Boilerplate for Electron app using React",
+  "main": "main.js",
+  "scripts": {
+    "react-install": "cd react-app && npm install",
+    "start-dev": "concurrently \"BROWSER=none npm start --prefix react-app\" \"wait-on http://localhost:3000 && npm start\"",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "make-mac": "electron-forge make --platform darwin",
+    "make-win": "electron-forge make --platform win32",
+    "build-react": "npm run build --prefix react-app",
+    "electron-build-mac": "npm run build-react && npm run make-mac",
+    "electron-build-win": "npm run build-react && npm run make-win"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.54",
+    "@electron-forge/maker-deb": "^6.0.0-beta.54",
+    "@electron-forge/maker-dmg": "^6.0.0-beta.54",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.54",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
+    "@electron-forge/maker-zip": "^6.0.0-beta.54",
+    "concurrently": "^5.3.0",
+    "electron": "^11.1.0",
+    "wait-on": "^5.2.0"
+  },
+  "dependencies": {
+    "electron-is-dev": "^1.2.0",
+    "electron-squirrel-startup": "^1.0.0"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "name": "ElectronWithReact",
+        "icon": "./assets/icon",
+        "win32metadata": {
+          "CompanyName": "ElectronWithReact"
+        },
+        "ignore": [
+          "^/react-app/node_modules",
+          "^/react-app/src",
+          "^/react-app/.eslintcache",
+          "^/react-app/.gitignore",
+          "^/react-app/package-lock.json",
+          "^/react-app/package.json",
+          "^/react-app/README.md"
+        ]
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "electron-with-react",
+            "authors": "Alex",
+            "noMsi": "true",
+            "setupExe": "ElectronWithReact.exe",
+            "loadingGif": "./assets/install-spinner.gif",
+            "setupIcon": "./assets/icon.ico",
+            "iconUrl": "https://cdn0.iconfinder.com/data/icons/most-usable-logos/120/App_Store-512.png"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-dmg",
+          "platforms": [
+            "darwin"
+          ],
+          "config": {
+            "format": "ULFO",
+            "icon": "./assets/icon.icns"
+          }
+        }
+      ]
+    }
+  }
+}
